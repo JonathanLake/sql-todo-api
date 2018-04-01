@@ -9,6 +9,7 @@ module.exports = class User extends Base {
         return {
             type: 'object',
             required: ['key', 'secret'],
+            
             properties: {
                 id: {
                     type: 'integer'
