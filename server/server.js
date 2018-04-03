@@ -1,24 +1,17 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 
-const User = require('./models/user');
+// Require routes.
+const users = require('./routes/users');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Add middleware.
 app.use(bodyParser.json());
+app.use('/users', users);
 
-app.get('/', (req, res) => {
-    res.send('Hello world!');
-});
-
-app.post('/users', async (req, res) => {
-    const newUser = req.body;
-    const user = await User.query().insert(newUser);
-    res.send(user);
-});
 
 app.listen(port, () => {
     console.log(`Listening on ${port}...`);
 });
-
